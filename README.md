@@ -1,5 +1,7 @@
 # Reel Riddle - Movie Guessing Game for Reddit
 
+[![Reel Riddle Game UI](assets/screenshot.png)](assets/screenshot.png)
+
 ## Project Overview
 
 Reel Riddle is a Devvit application that brings an engaging movie guessing game directly to Reddit communities.  Players are presented with mysterious, AI-generated descriptions of movies and compete to guess the titles.  The app features a point system, leaderboard, and user-generated riddle creation, all seamlessly integrated within the Reddit platform.
