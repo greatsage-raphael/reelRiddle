@@ -1,0 +1,542 @@
+/* Red & Gold Theme for Reel Riddle */
+:root {
+  /* Main Background & Card Colors */
+  --background-color: #2E0B0B;  /* Deep, dramatic maroon */
+  --card-bg-color: #4D1C1C;     /* Lighter maroon for panels and cards */
+
+  /* Accent Colors */
+  --primary-color: #D4AF37;     /* Warm, rich gold for primary buttons */
+  --secondary-color: #B08D2D;   /* Darker gold for secondary elements */
+  --accent-color: #FFCC66;      /* Brighter gold for extra highlights */
+
+  /* Text Colors */
+  --text-color: #f7f7f7;        /* Off-white for main text */
+  --text-secondary: #ffffff;    /* Soft gold for subtitles and secondary text */
+
+  /* Other Properties */
+  --border-radius: 8px;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Global Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header Styles */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Screen Layout */
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Button Styles */
+button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.secondary-button {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-secondary);
+}
+
+.text-button {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  text-decoration: underline;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* GIFs Grid */
+.gifs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.gif-item {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 16/9;
+}
+
+.gif-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Guess Container */
+.guess-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#guess-input {
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--text-secondary);
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+#hint-button {
+  margin-top: 0.5rem;
+}
+
+/* Create Form */
+.create-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--text-secondary);
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-box input {
+  flex: 1;
+}
+
+.selected-gifs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 100px;
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+}
+
+.selected-gif {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.selected-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.selected-gif .remove-gif {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--text-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Result Message */
+#result-message {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.correct {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.incorrect {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Help Screen */
+.help-content {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.help-content p {
+  margin-bottom: 1rem;
+}
+
+.help-content ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Leaderboard Screen */
+#leaderboard-list {
+  width: 100%;
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--text-secondary);
+}
+
+.leaderboard-item:last-child {
+  border-bottom: none;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+#leaderboard-screen {
+  position: relative;
+  min-height: 400px;
+}
+
+.leaderboard-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+#loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px; /* Reduced padding */
+  border-radius: 5px; /* Reduced border radius */
+  text-align: center;
+  width: 500px; /* Set a fixed width */
+  max-width: 80%; /* Ensure it doesn't overflow on small screens */
+}
+
+#loading-indicator img {
+  max-width: 300px; /* Control the image size */
+  max-height: 300px;
+  display: block; /* Remove extra space below image */
+  margin: 0 auto; /* Center the image */
+}
+
+#loading-indicator p {
+  font-size: 0.9em; /* Reduce font size of text */
+  margin-top: 5px; /* Adjust spacing between image and text */
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Preview Screen */
+#preview-description-editor {
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--text-secondary);
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  resize: vertical;
+}
+
+.movie-title-display {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: var(--card-bg-color);
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  margin-top: 5px;
+}
+
+
+#guesses-list {
+  width: 100%; /* Make it take the full width */
+  padding: 0;
+  margin: 0; /* Remove default margins */
+  list-style: none; /* Remove default list styling */
+}
+
+#guesses-list li {
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  background-color: #4D1C1C;;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Required for absolute positioning of progress bar */
+  overflow: hidden;
+}
+
+#guesses-list li.correct-guess { /* Yellow highlight */
+  color: #000; /* Dark text for contrast */
+}
+
+/* Style the #progress-bar inside the list*/
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%; /* Match the height of the list item */
+  background-color: #B08D2D; /* Semi-transparent yellow */
+  z-index: 0; /* Place it behind the text and count */
+  transition: width 0.3s ease; /* Smooth width transition */
+  border-radius: 5px;
+}
+
+/* Ensure the text and count are above the progress bar */
+.guess-text,
+.guess-count {
+  position: relative; /* Create a stacking context */
+  z-index: 1; /* Ensure they're above the progress bar */
+}
+
+
+#guesses-list li .guess-count {
+  font-size: 0.8em; /* Smaller count */
+  color: #E6D8B7; /* Lighter count text */
+}
+
+/* Add checkmark icon (example using Font Awesome) */
+.correct-guess::before {
+  content: "✔"; /* Checkmark character */
+  margin-right: 5px;
+  font-size: 1em;
+}
+
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+list-style-type: none;
+padding: 5px;
+margin: 5px;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .guess-container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #guess-input {
+    flex: 1;
+  }
+  
+  #hint-button {
+    margin-top: 0;
+  }
+}
+
+
+.leaderboard-list {
+  list-style-type: none; /* Remove default numbering */
+  padding: 0;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between; /* Distribute items horizontally */
+  align-items: center; /* Align items vertically */
+  padding: 10px;
+  border-bottom: 1px solid #444; /* Add a subtle divider */
+  color: #fff; /* Set text color to white */
+  font-size: 16px;
+}
+
+.medal {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.gold-medal {
+  color: gold;
+}
+
+.silver-medal {
+  color: silver;
+}
+
+.bronze-medal {
+  color: #cd7f32; /* Bronze color */
+}
+
+.rank {
+  margin-right: 5px;
+  color: #ddd; /* Slightly lighter color for the rank */
+}
+
+.username {
+  flex-grow: 1; /* Allow username to take up available space */
+}
+
+.score {
+  font-weight: bold;
+  color: #ddd; /* Style the score */
+}
+
+.poster-description-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  height: auto; /* Adjust height automatically */
+  max-height: 50vh; /* Limit max height to avoid overflow */
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: flex-start; /* Align items at the top */
+}
+
+#preview-movie-poster {
+  max-width: 40%; /* Adjust width for better fit */
+  height: 250px; /* Set a fixed height */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+#preview-description-editor {
+  flex: 1;
+  height: 250px; /* Set height to match poster */
+  overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Ensure buttons are always visible */
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8" />
+    <title>Reel Riddle</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Add some basic styles for the leaderboard */
+        #leaderboard-list ol {
+            list-style-type: decimal;
+            /* Use numbered list */
+            padding-left: 20px;
+        }
+
+        #leaderboard-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>🎬 Reel Riddle 🎮</h1>
+            <p class="subtitle">Guess movies from mysterious descriptions!</p>
+            <div id="user-info">
+                <span id="user-name"></span>
+                <span id="user-points"></span>
+            </div>
+        </header>
+
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div id="description-container" class="description-box"></div>
+            <div class="guess-container">
+                <input type="text" id="guess-input" placeholder="Type movie title..." />
+                <button id="submit-guess" class="primary-button">Guess</button>
+                <button id="reveal-button" class="secondary-button">💡 Reveal letters</button>
+                <button id="hint-button" class="secondary-button">❓ Hint</button>
+            </div>
+            <div id="result-message" class="hidden"></div>
+            <button id="back-to-menu" class="text-button">Back to Menu</button>
+        </div>
+
+        <!-- In your create-screen section, add this: -->
+        <div id="loading-indicator" class="hidden">
+            <img src="./processing.gif" alt="Loading..." />
+        </div>
+
+
+        <!-- Create Screen -->
+        <div id="create-screen" class="screen hidden">
+            <h2>Create a Riddle</h2>
+            <div class="create-form">
+                <div class="form-group">
+                    <label for="movie-input">Movie Title:</label>
+                    <input type="text" id="movie-input" placeholder="Enter movie title" list="movie-suggestions" />
+                    <datalist id="movie-suggestions"></datalist>
+                </div>
+
+                <p class="info-text">
+                    When you enter a movie title and save the riddle, our AI will generate
+                    a spoiler-free, mysterious description for other players to guess from.
+                </p>
+
+                <div class="button-row">
+                    <button id="save-riddle" class="primary-button">Create Riddle</button>
+                    <button id="cancel-create" class="secondary-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <!-- Preview Screen -->
+                <!-- Preview Screen -->
+                <div id="preview-screen" class="hidden">
+                    <div class="header">
+                        <h2>Review Riddle</h2>
+                    </div>
+        
+                    <div class="form-group">
+                        <label>Movie Title:</label>
+                        <div id="preview-movie-title" class="movie-title-display"></div>
+                    </div>
+        
+                    <div class="poster-description-container">
+                        <img id="preview-movie-poster" src="" alt="Movie Poster">
+                        <textarea id="preview-description-editor" rows="10"
+                            placeholder="Edit the description if needed..."></textarea>
+                    </div>
+        
+                    <div class="info-box">
+                        <p>You can edit the AI-generated description before posting your riddle. Make any changes you'd like!</p>
+                    </div>
+        
+                    <div class="button-group">
+                        <button id="post-riddle" class="primary-button">Post Riddle</button>
+                        <button id="back-to-edit">Back to Edit</button>
+                    </div>
+                </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen hidden">
+            <div class="leaderboard-content">
+                <h2>Leaderboard</h2>
+                <div id="leaderboard-list">
+                    <p>Loading leaderboard...</p>
+                </div>
+                <button id="back-from-leaderboard" class="text-button">Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Help Screen -->
+        <div id="help-screen" class="screen hidden">
+            <h2>How to Play</h2>
+            <div class="help-content">
+                <p><strong>Reel Riddle</strong> is a movie guessing game where you try to identify movies based on mysterious
+                    descriptions.</p>
+                <ul>
+                    <li>Read the AI-generated description of a movie</li>
+                    <li>Type your guess in the input field</li>
+                    <li>Hit the "Guess" button to check your answer</li>
+                    <li>Need help? Click the "Hint" button for the first letter of each word</li>
+                </ul>
+                <p>You can also create your own riddles for others to solve by entering your favorite movies!</p>
+            </div>
+            <button id="back-from-help" class="text-button">Back to Menu</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen hidden">
+            <p>See how everyone guessed!</p>
+            <div id="guesses-list">
+            </div>
+            <div id="result-content">
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript" src="script.js"></script>
+</body>
+
+</html>
